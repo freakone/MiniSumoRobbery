@@ -11,9 +11,12 @@ void sensors_update()
 	{
 		ADMUX &= 0b11110000; // czyscimy MUX0-3
 		ADMUX |= i;
-		ADCSRA |= (1 << ADSC);		
-		while(ADCSRA & (1<<ADSC));	
-		sensor[i] = (ADCL | (ADCH << 8));	
+		for(int ii = 0; ii < 2; ii++)
+		{
+			ADCSRA |= (1 << ADSC);		
+			while(ADCSRA & (1<<ADSC));	
+			sensor[i] = (ADCL | (ADCH << 8));
+		}
 	}
 }
 

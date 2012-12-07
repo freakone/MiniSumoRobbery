@@ -89,7 +89,7 @@ void m2_start()
 	}
 	else
 	{
-		M2_IN2_PORT &= ~(1 << M2_IN2);
+		M2_IN1_PORT &= ~(1 << M2_IN1);
 		M2_IN2_PORT |= (1 << M2_IN2);
 		unsigned char tmp = -m2_power*255/100;
 		M2 = tmp; // analogicznie

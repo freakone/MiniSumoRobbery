@@ -14,13 +14,15 @@ void blink()
 }
 
 
-
+volatile int moar = 30;
 ISR(INT1_vect)
 { 
    PORTD ^= (1 << PD4);   
 
-   m2_set(50);
+   m2_set(moar);
    m2_start();
+   
+   moar *= -1;
 }
 
 int main()
