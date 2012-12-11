@@ -11,7 +11,7 @@
 
 DEVICE     = atmega88
 CLOCK      = 8000000
-PROGRAMMER = -c usbasp -P usb -F
+PROGRAMMER = -c usbasp -P /dev/usb -F
 LIBDIR     = libs
 OBJECTS    = main.o
 OBJECTS    += $(LIBDIR)/usart.o

@@ -5,6 +5,8 @@
 #define USART_BAUDRATE 9600
 #define BAUD_PRESCALE (((F_OSC / (USART_BAUDRATE * 16UL))) - 1) 
 
+extern volatile unsigned char bEnable;
+extern volatile unsigned char bDebugEnable;
 void uart_init();
 void uart_put(unsigned char data);
 void uart_puts(const char *s);

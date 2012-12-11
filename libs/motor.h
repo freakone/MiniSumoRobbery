@@ -13,11 +13,11 @@
 
 #define M2_IN1_PORT PORTD //SILNIK PRAWY
 #define M2_IN1_DDR DDRD
-#define M2_IN1 PD6
+#define M2_IN1 PD5
 
 #define M2_IN2_PORT PORTD
 #define M2_IN2_DDR DDRD
-#define M2_IN2 PD5
+#define M2_IN2 PD6
 
 #define M2_PWM_DDR DDRB
 #define M2 OCR1A
