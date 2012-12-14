@@ -8,23 +8,26 @@
 void blink()
 {
 	PORTD |= (1 << PD2);
-	_delay_ms(50);
+	_delay_ms(20);
 	PORTD &= ~(1 << PD2);
-	_delay_ms(50);
+	_delay_ms(20);
 }
 
-
-volatile int moar = 100;
 ISR(INT1_vect)
 { 
-   PORTD ^= (1 << PD4);   
+	bEnable = 255;
+}
 
-   m2_set(moar);
-   m2_start();
-   m1_set(-moar);
-   m1_start();	
-   
-   moar *= -1;
+bool battery_check()
+{
+	if(sensor[6] < 580)
+	{
+		PORTD |= (1 << PD4);
+		return true;
+	}
+
+	PORTD &= ~(1 << PD4);
+	return false;
 }
 
 int main()
@@ -38,10 +41,16 @@ int main()
 	EICRA = (1 << ISC11) | (1 << ISC10);	
 	sei();	
 
+	m1_set(210);
+	m2_set(255);
+
 	while(1)
 	{
 		blink();	
 		sensors_update();
+		
+		if(battery_check())
+			continue;
 
 		if(bDebugEnable == 255)	
 			sensors_debug();   

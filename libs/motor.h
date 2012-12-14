@@ -23,11 +23,18 @@
 #define M2 OCR1A
 #define M2_PWM PB1
 
+#define FOR 1
+#define BCK 2
+
+
 void motor_init();
-void motor_debug();
-void m1_start();
+void m1_start(unsigned char dir);
 void m1_stop();
-void m1_set(char power);
-void m2_start();
+void m1_set(unsigned char power);
+void m1_change(char c);
+unsigned char const m1_getspeed();
+void m2_start(unsigned char dir);
 void m2_stop();
-void m2_set(char power);
+void m2_set(unsigned char power);
+void m2_change(char c);
+unsigned char const m2_getspeed();
