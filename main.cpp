@@ -31,9 +31,10 @@ bool battery_check()
 }
 
 int main()
-{	
-	DDRD = ~(1 << PD3);
-	PORTD |= (1 << PD3);
+{
+	DDRD = 0xff;	
+	//DDRD = ~(1 << PD3);
+//	PORTD |= (1 << PD3);
 	uart_init();
 	sensors_init();
 	motor_init();

@@ -32,19 +32,24 @@ void motor_init(){
 
 void m1_start(unsigned char dir)
 {
-	if (dir == 1)
+	if(dir != m1_state)
 	{
-		M1_IN1_PORT |= (1 << M1_IN1);
-		M1_IN2_PORT &= ~(1 << M1_IN2);
-		m1_state = 1;		
+		if (dir == 1)
+		{
+			M1_IN1_PORT |= (1 << M1_IN1);
+			M1_IN2_PORT &= ~(1 << M1_IN2);
+			m1_state = 1;		
+		}
+		else
+		{
+			M1_IN1_PORT &= ~(1 << M1_IN1);
+			M1_IN2_PORT |= (1 << M1_IN2);	
+			m1_state = 2;	
+		}
 	}
-	else
-	{
-		M1_IN1_PORT &= ~(1 << M1_IN1);
-		M1_IN2_PORT |= (1 << M1_IN2);	
-		m1_state = 2;	
-	}
-	M1 = m1_power; // ustawiamy pwma	
+	
+	if(M1 != m1_power)
+		M1 = m1_power; // ustawiamy pwma	
 }
 
 void m1_stop()
@@ -74,19 +79,24 @@ unsigned char const m1_getspeed()
 
 void m2_start(unsigned char dir)
 {
-	if (dir == 1)
+	if(dir != m2_state)
 	{
-		M2_IN1_PORT |= (1 << M2_IN1);
-		M2_IN2_PORT &= ~(1 << M2_IN2);
-		m2_state = 1;		
+		if (dir == 1)
+		{
+			M2_IN1_PORT |= (1 << M2_IN1);
+			M2_IN2_PORT &= ~(1 << M2_IN2);
+			m2_state = 1;		
+		}
+		else
+		{
+			M2_IN1_PORT &= ~(1 << M2_IN1);
+			M2_IN2_PORT |= (1 << M2_IN2);	
+			m2_state = 2;	
+		}
 	}
-	else
-	{
-		M2_IN1_PORT &= ~(1 << M2_IN1);
-		M2_IN2_PORT |= (1 << M2_IN2);	
-		m2_state = 2;	
-	}
-	M2 = m2_power; // ustawiamy pwma	
+
+	if(M2 != m2_power)
+		M2 = m2_power; // ustawiamy pwma	
 }
 
 void m2_stop()
