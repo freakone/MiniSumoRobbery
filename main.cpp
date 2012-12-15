@@ -32,14 +32,17 @@ bool battery_check()
 
 int main()
 {	
-	DDRD = 0xff;
+	DDRD = ~(1 << PD3);
+	PORTD |= (1 << PD3);
 	uart_init();
 	sensors_init();
 	motor_init();
+
 	
+	EICRA = (1 << ISC10)|(1 << ISC11);
 	EIMSK = (1 << INT1);
-	EICRA = (1 << ISC11) | (1 << ISC10);	
-	sei();	
+	sei();		
+	
 
 	m1_set(210);
 	m2_set(255);
